@@ -21,7 +21,7 @@ export default function Header () {
           </div>
           <div style={{ lineHeight: 0 }} className='text-left'>
             <h5 className='text-[15px] font-medium' style={{ lineHeight: 1 }}>{user.name} {user.surname}</h5>
-            <span className='text-[14px] font-semibold text-neutral-200 capitalize' style={{ lineHeight: 1 }}>{user.rol.includes('admin') ? 'admin' : 'user'}</span>
+            <span className='text-[14px] font-semibold text-neutral-300 capitalize' style={{ lineHeight: 1 }}>{user.rol.includes('admin') ? 'admin' : 'user'}</span>
           </div>
           <span className='ml-2 text'><IoIosArrowDown /></span>
         </button>

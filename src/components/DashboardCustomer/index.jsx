@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { ContextConsumerAuth } from '../../context/AuthContext'
 import { AiOutlineUserAdd } from 'react-icons/ai'
+import { BiFilterAlt } from 'react-icons/bi'
 import ListCustomer from '../ListCustomer'
 import ModalAddCustomer from '../ModalAddCustomer'
+import MenuFilter from '../MenuFilter'
 
 const initialState = {
   name: '',
@@ -17,6 +19,7 @@ export default function DashboardCustomer () {
   const { user } = ContextConsumerAuth()
   const [addCutomer, setAddCustomer] = useState(initialState)
   const [menuShow, setShowMenu] = useState(false)
+  const [optionsFilter, setOptionsFilter] = useState(false)
 
   useEffect(() => {
     if (user) {
@@ -94,18 +97,29 @@ export default function DashboardCustomer () {
 
   const handleShowMenu = () => {
     setShowMenu(!menuShow)
+    if (optionsFilter) setOptionsFilter(false)
+  }
+
+  const handleFilterOptions = () => {
+    setOptionsFilter(!optionsFilter)
+    if (menuShow) setShowMenu(false)
   }
 
   return user.rol.includes('admin') && isAuth && user
-    ? <div className='w-full sm:px-24 px-5'>
-      <div className='w-full flex-col min-h-[90vh] flex justify-center'>
+    ? <div className='w-full sm:px-20 px-5'>
+      <div className='w-full flex-col min-h-[90vh] relative flex justify-center'>
         {
           menuShow ? <ModalAddCustomer handleShowMenu={handleShowMenu} handleChange={handleChange} handleAddCutomer={handleAddCutomer} /> : null
         }
-
         <div className='flex py-3 justify-between items-center'>
           <h3 className='text-2xl text-[#252525] font-semibold' style={{ lineHeight: 1 }}>Customers</h3>
-          <button className='text-2xl bg-green-400 hover:bg-green-300 transition-[background-color] text-white p-[6px] rounded-xl' onClick={() => handleShowMenu()}><AiOutlineUserAdd /></button>
+          <div className='relative'>
+            {
+            optionsFilter ? <MenuFilter /> : null
+           }
+            <button className='text-2xl bg-amber-300 hover:bg-amber-200 transition-[background-color] text-white p-[6px] mr-2 rounded-xl' onClick={() => handleFilterOptions()}><BiFilterAlt /></button>
+            <button className='text-2xl bg-green-400 hover:bg-green-300 transition-[background-color] text-white p-[6px] rounded-xl' onClick={() => handleShowMenu()}><AiOutlineUserAdd /></button>
+          </div>
         </div>
         <ListCustomer customer={customer} handleDeleteCustomer={handleDeleteCustomer} />
       </div>

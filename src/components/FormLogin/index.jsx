@@ -18,6 +18,7 @@ export default function FormLogin () {
 
   const handleLogin = (e) => {
     e.preventDefault()
+
     fetch('http://localhost:4000/auth/login', {
       method: 'POST',
       headers: {

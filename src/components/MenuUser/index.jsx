@@ -29,7 +29,7 @@ export default function MenuUser ({ menuUserShow }) {
   }
 
   return (
-    <div className={`absolute  ${menuUserShow ? 'top-[63px]' : '-top-full'} sm:right-10 right-5 bg-[#262E52] text-white z-10 transition-[top] min-h-[290px] flex flex-col justify-center min-w-[210px] p-8 rounded-b-md`}>
+    <div className={`absolute  ${menuUserShow ? 'top-[63px]' : '-top-full'} sm:right-10 right-5 bg-[#262E52] text-white z-10 transition-[top] min-h-[250px] flex flex-col justify-center min-w-[210px] px-5 rounded-b-md`}>
       <div>
         <div className='w-[85px] h-[85px] rounded-full overflow-hidden mb-3'>
           <img src={user.image} alt={`image user ${user.surname}`} />

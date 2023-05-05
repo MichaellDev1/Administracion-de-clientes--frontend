@@ -19,31 +19,59 @@ export default function ListCustomer ({ customer, handleDeleteCustomer }) {
   }
 
   return (
-    <ul className='max-h-[300px] w-full relative'>
+    <div>
       {
         customerSelected
           ? <div className='w-full h-full top-0 left-0 absolute flex justify-center items-center'><ModalUpdateCustomer nullSelected={nullSelected} customerSelected={customerSelected} /></div>
           : null
       }
-      {
-        customer.map(({ name, state, surname, dni, _id }) => <li key={_id}>
-          <div className='my-5 flex justify-between items-center'>
-            <div className='flex flex-col'>
-              <h3 className='text-neutral-800 font-semibold text-base'>{name} {surname}</h3>
-              <span className='text-neutral-500 font-medium text-sm'>{dni}</span>
-              <span className='text-neutral-500 font-medium text-sm'>{state}</span>
-            </div>
-            <div className='flex'>
+
+      <div className='max-h-[400px] overflow-y-scroll mt-2'>
+        <table>
+          <thead>
+            <tr>
+              <th className='uppercase text-[#252525]'>NAME</th>
+              <th className='uppercase text-[#252525]'>DNI</th>
+              <th className='uppercase text-[#252525]'>STATE</th>
+              <th className='uppercase text-[#252525]'>CREATION DATE</th>
+              <th className='uppercase text-[#252525]'>edit or remove</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {
+        customer.length > 0
+          ? customer.map(({
+            name, state, surname, dni, _id,
+            createdAt
+          }) => <tr key={_id}>
+            <th scope='row'><h3 className='text-neutral-800 font-semibold text-base'>{name} {surname}</h3></th>
+            <th><span className='text-neutral-500 font-medium text-sm'>{dni}</span></th>
+            <th>   <span className='text-neutral-500 font-medium text-sm'>{state}</span></th>
+            <th> <span className='text-neutral-500 font-medium text-sm'>{
+    createdAt.split('T')[0]
+    }
+                 </span>
+            </th>
+            <th>   <div className='flex'>
               <button className='font-semibold  text-neutral-500 p-1  rounded-lg py-1 mt-2 text-lg mr-2' onClick={() => handleUpdateCustomer({ name, state, surname, dni, _id })}>
                 <HiOutlinePencil />
               </button>
               <button className='font-semibold  text-neutral-500 p-2  rounded-lg py-1 text-lg mt-2' onClick={() => handleDeleteCustomer({ id: _id })}>
                 <MdDeleteOutline />
               </button>
-            </div>
-          </div>
-        </li>)
+                   </div>
+            </th>
+          </tr>)
+          : <h3 className='text-base font-normal'>Unregistered customers...</h3>
       }
-    </ul>
+
+          </tbody>
+
+        </table>
+      </div>
+
+    </div>
+
   )
 }
