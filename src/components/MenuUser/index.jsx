@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ContextConsumerAuth } from '../../context/AuthContext'
 
 const menuSettings = [
@@ -16,7 +17,7 @@ const menuSettings = [
   }
 ]
 
-export default function MenuUser () {
+export default function MenuUser ({ menuUserShow }) {
   const { user, setUser } = ContextConsumerAuth()
   const navigate = useNavigate()
 
@@ -28,7 +29,7 @@ export default function MenuUser () {
   }
 
   return (
-    <div className='fixed top-[63px] right-0 bg-[#262E52] min-h-[290px] flex flex-col justify-center min-w-[240px] p-8 rounded-bl-md'>
+    <div className={`absolute  ${menuUserShow ? 'top-[63px]' : '-top-full'} sm:right-10 right-5 bg-[#262E52] text-white z-10 transition-[top] min-h-[290px] flex flex-col justify-center min-w-[210px] p-8 rounded-b-md`}>
       <div>
         <div className='w-[85px] h-[85px] rounded-full overflow-hidden mb-3'>
           <img src={user.image} alt={`image user ${user.surname}`} />
@@ -38,7 +39,7 @@ export default function MenuUser () {
         {
             menuSettings.map(({ option, logOut }) => <li key={option} className='text-[15px] mb-2 font-medium'>
               {logOut ? <a href='#' onClick={(e) => logOutFunction(e)}>{option}</a> : <a href='#'>{option}</a>}
-            </li>)
+                                                     </li>)
         }
       </ul>
     </div>

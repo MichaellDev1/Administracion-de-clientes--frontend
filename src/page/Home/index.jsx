@@ -4,7 +4,7 @@ import Header from '../../components/Header'
 import DashboardCustomer from '../../components/DashboardCustomer'
 
 export default function Home () {
-  const { user, setUser } = ContextConsumerAuth()
+  const { user } = ContextConsumerAuth()
   return user
     ? (
       <main>
@@ -14,4 +14,3 @@ export default function Home () {
       )
     : null
 }
-

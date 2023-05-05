@@ -1,9 +1,9 @@
 import React from 'react'
 import { MdOutlineClose } from 'react-icons/md'
 
-export default function MenuAddCustomer ({ handleShowMenu, handleChange, handleAddCutomer }) {
+export default function ModalAddCustomer ({ handleShowMenu, handleChange, handleAddCutomer }) {
   return (
-    <div className='fixed w-[90%] min-h-[350px] bg-neutral-200 rounded-md flex-col flex justify-center items-center p-5 m-auto left-0 right-0'>
+    <div className='fixed w-[90%] min-h-[350px] bg-neutral-200 z-10 rounded-md flex-col flex justify-center items-center p-5 m-auto left-0 right-0'>
       <div className='w-full text-right text-2xl'>
         <button className='text-[#303030]' onClick={() => handleShowMenu()}><MdOutlineClose /></button>
       </div>

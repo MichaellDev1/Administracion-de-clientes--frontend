@@ -3,9 +3,8 @@ const AuthContext = createContext()
 
 export default function ContextProviderAuth ({ children }) {
   const [user, setUser] = useState(null)
-  const [token, setToken] = useState(null)
   return (
-    <AuthContext.Provider value={{ user, setUser, token, setToken }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   )

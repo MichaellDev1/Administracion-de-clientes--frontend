@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { ContextConsumerAuth } from '../../context/AuthContext'
 import { AiOutlineUserAdd } from 'react-icons/ai'
 import ListCustomer from '../ListCustomer'
-import MenuAddCustomer from '../MenuAddCustomer'
+import ModalAddCustomer from '../ModalAddCustomer'
 
 const initialState = {
   name: '',
@@ -97,11 +97,12 @@ export default function DashboardCustomer () {
   }
 
   return user.rol.includes('admin') && isAuth && user
-    ? <div className='w-full sm:px-24  px-10'>
+    ? <div className='w-full sm:px-24 px-5'>
       <div className='w-full flex-col min-h-[90vh] flex justify-center'>
         {
-          menuShow ? <MenuAddCustomer handleShowMenu={handleShowMenu} handleChange={handleChange} handleAddCutomer={handleAddCutomer} /> : null
+          menuShow ? <ModalAddCustomer handleShowMenu={handleShowMenu} handleChange={handleChange} handleAddCutomer={handleAddCutomer} /> : null
         }
+
         <div className='flex py-3 justify-between items-center'>
           <h3 className='text-2xl text-[#252525] font-semibold' style={{ lineHeight: 1 }}>Customers</h3>
           <button className='text-2xl bg-green-400 hover:bg-green-300 transition-[background-color] text-white p-[6px] rounded-xl' onClick={() => handleShowMenu()}><AiOutlineUserAdd /></button>
