@@ -5,7 +5,6 @@ import ModalUpdateCustomer from '../ModalUpdateCustomer'
 
 export default function ListCustomer ({ customer, handleDeleteCustomer }) {
   const [customerSelected, setCustomerSelected] = useState()
-
   const handleUpdateCustomer = ({ name, state, surname, dni, _id }) => {
     setCustomerSelected({
       data: {
@@ -45,25 +44,25 @@ export default function ListCustomer ({ customer, handleDeleteCustomer }) {
             name, state, surname, dni, _id,
             createdAt
           }) => <tr key={_id}>
-            <th scope='row'><h3 className='text-neutral-800 font-semibold text-base'>{name} {surname}</h3></th>
+            <th scope='row'><h3 className='text-neutral-800 font-semibold text-base capitalize'>{name} {surname}</h3></th>
             <th><span className='text-neutral-500 font-medium text-sm'>{dni}</span></th>
             <th>   <span className='text-neutral-500 font-medium text-sm'>{state}</span></th>
             <th> <span className='text-neutral-500 font-medium text-sm'>{
     createdAt.split('T')[0]
     }
-                 </span>
+            </span>
             </th>
-            <th>   <div className='flex'>
+            <th>   <div className='flex justify-center'>
               <button className='font-semibold  text-neutral-500 p-1  rounded-lg py-1 mt-2 text-lg mr-2' onClick={() => handleUpdateCustomer({ name, state, surname, dni, _id })}>
                 <HiOutlinePencil />
               </button>
               <button className='font-semibold  text-neutral-500 p-2  rounded-lg py-1 text-lg mt-2' onClick={() => handleDeleteCustomer({ id: _id })}>
                 <MdDeleteOutline />
               </button>
-                   </div>
+            </div>
             </th>
-          </tr>)
-          : <h3 className='text-base font-normal'>Unregistered customers...</h3>
+                </tr>)
+          : <h3 className='text-base font-normal text-[#858585]'>Unregistered customers...</h3>
       }
 
           </tbody>

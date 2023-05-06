@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ContextConsumerAuth } from '../../context/AuthContext'
 import { AiOutlineUserAdd } from 'react-icons/ai'
-import { BiFilterAlt } from 'react-icons/bi'
+import { BiFilterAlt, BiRefresh } from 'react-icons/bi'
 import ListCustomer from '../ListCustomer'
 import ModalAddCustomer from '../ModalAddCustomer'
 import MenuFilter from '../MenuFilter'
@@ -79,8 +79,7 @@ export default function DashboardCustomer () {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`,
-        EmailAuthorization: `${user.email}`
+        Authorization: `Bearer ${user.token}`
       }
     })
       .then(response => response.json())
@@ -115,8 +114,9 @@ export default function DashboardCustomer () {
           <h3 className='text-2xl text-[#252525] font-semibold' style={{ lineHeight: 1 }}>Customers</h3>
           <div className='relative'>
             {
-            optionsFilter ? <MenuFilter /> : null
+            optionsFilter ? <MenuFilter setCustomers={setCustomers} setOptionsFilter={setOptionsFilter} /> : null
            }
+            <button className='text-2xl bg-blue-400 hover:bg-blue-200 transition-[background-color] text-white p-[6px] mr-2 rounded-xl' onClick={() => window.location.reload()}><BiRefresh /></button>
             <button className='text-2xl bg-amber-300 hover:bg-amber-200 transition-[background-color] text-white p-[6px] mr-2 rounded-xl' onClick={() => handleFilterOptions()}><BiFilterAlt /></button>
             <button className='text-2xl bg-green-400 hover:bg-green-300 transition-[background-color] text-white p-[6px] rounded-xl' onClick={() => handleShowMenu()}><AiOutlineUserAdd /></button>
           </div>
