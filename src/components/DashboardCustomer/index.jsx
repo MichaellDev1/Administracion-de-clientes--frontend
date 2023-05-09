@@ -5,6 +5,7 @@ import { BiFilterAlt, BiRefresh } from 'react-icons/bi'
 import ListCustomer from '../ListCustomer'
 import ModalAddCustomer from '../ModalAddCustomer'
 import MenuFilter from '../MenuFilter'
+import UserNotAdmin from '../UserNotAdmin'
 
 const initialState = {
   name: '',
@@ -45,25 +46,34 @@ export default function DashboardCustomer () {
 
   const handleAddCutomer = (e) => {
     e.preventDefault()
-    fetch('http://localhost:4000/customer/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`
 
-      },
-      body: JSON.stringify({ ...addCutomer })
-    })
-      .then(response => response.json())
-      .then(res => {
-        if (res.message) return
-        setAuth(true)
-        setCustomers([...customer, res])
-        setShowMenu(false)
+    if (!addCutomer.name &&
+      !addCutomer.surname &&
+      !addCutomer.dni &&
+      !addCutomer.state && addCutomer.name.trim() === '' &&
+      addCutomer.surname.trim() === '' &&
+      addCutomer.state === '') return console.log('Falta de credentiales')
+
+    if (addCutomer.name.trim() !== '' && addCutomer.surname.trim() !== '' && addCutomer.state !== '' && addCutomer.dni.trim() !== '') {
+      fetch('http://localhost:4000/customer/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`
+        },
+        body: JSON.stringify({ ...addCutomer })
       })
-      .catch(e => {
-        throw e
-      })
+        .then(response => response.json())
+        .then(res => {
+          if (res.message) return
+          setAuth(true)
+          setCustomers([...customer, res])
+          setShowMenu(false)
+        })
+        .catch(e => {
+          throw e
+        })
+    }
   }
 
   const handleChange = (e) => {
@@ -123,6 +133,6 @@ export default function DashboardCustomer () {
         </div>
         <ListCustomer customer={customer} handleDeleteCustomer={handleDeleteCustomer} />
       </div>
-      </div>
-    : null
+    </div>
+    : <UserNotAdmin />
 }

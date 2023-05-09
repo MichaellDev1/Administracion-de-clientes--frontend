@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { IoIosArrowDown } from 'react-icons/io'
 import { ContextConsumerAuth } from '../../context/AuthContext'
 
@@ -14,7 +14,7 @@ export default function MenuFilter ({ setCustomers, setOptionsFilter }) {
 
   const handleFilterButtton = (e) => {
     if (filterName && !filterDni) {
-      fetch(`http://localhost:4000/customer/name/${filterName}`, {
+      fetch(`https://localhost:4000/customer/name/${filterName}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ export default function MenuFilter ({ setCustomers, setOptionsFilter }) {
     }
 
     if (filterDni && !filterName) {
-      fetch(`http://localhost:4000/customer/dni/${filterDni}`, {
+      fetch(`https://localhost:4000/customer/dni/${filterDni}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export default function MenuFilter ({ setCustomers, setOptionsFilter }) {
     }
 
     if (filterDni && filterName) {
-      fetch(`http://localhost:4000/customer/${filterName}/${filterDni}`, {
+      fetch(`https://localhost:4000/customer/${filterName}/${filterDni}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export default function MenuFilter ({ setCustomers, setOptionsFilter }) {
 
     if (moreAncient || moreRecent) {
       if (!filterDni && !filterName) {
-        fetch('http://localhost:4000/customer/filter', {
+        fetch('https://localhost:4000/customer/filter', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -95,15 +95,15 @@ export default function MenuFilter ({ setCustomers, setOptionsFilter }) {
       <h3 className='text-xl font-semibold'>Filtrar por:</h3>
       <ul className='mt-2'>
         <li className='mb-2 py-1'>
-          <button className='text-[17px] font-medium text-neutral-700 flex items-center' onClick={() => setShowFech(!isShowFech)}>Fecha<span className='text-sm'><IoIosArrowDown /></span></button>
+          <button className='text-[14px] mb-1 font-medium text-neutral-700 flex items-center' onClick={() => setShowFech(!isShowFech)}>Fecha<span className={` ${isShowFech ? 'rotate-0' : 'rotate-[270deg]'} text-sm`}><IoIosArrowDown /></span></button>
           <div className={` flex-col ${isShowFech ? 'flex' : 'hidden'}`}>
-            <label htmlFor=''>
-              <input type='checkbox' onChange={(e) => handleChekedRecent(e)} checked={moreRecent} />
+            <label htmlFor='' className='text-sm flex items-center font-medium text-neutral-500'>
+              <input type='checkbox' className='mr-1' onChange={(e) => handleChekedRecent(e)} checked={moreRecent} />
               Mas reciente
             </label>
-            <label htmlFor=''>
+            <label htmlFor='' className='text-sm flex items-center font-medium text-neutral-500'>
               <input
-                type='checkbox' onChange={(e) => handleChekedAncient(e)}
+                type='checkbox' className='mr-1' onChange={(e) => handleChekedAncient(e)}
                 checked={moreAncient}
               />
               Mas antiguo
@@ -111,13 +111,13 @@ export default function MenuFilter ({ setCustomers, setOptionsFilter }) {
           </div>
         </li>
         <li className='mb-2 py-1'>
-          <button className='text-[17px] font-medium text-neutral-700 flex items-center' onClick={() => setShowName(!isShowName)}>Nombre<span className='text-sm'><IoIosArrowDown /></span></button>
+          <button className='text-[14px] mb-1 font-medium text-neutral-700 flex items-center' onClick={() => setShowName(!isShowName)}>Nombre<span className={` ${isShowName ? 'rotate-0' : 'rotate-[270deg]'} text-sm`}><IoIosArrowDown /></span></button>
           <div className={` flex-col ${isShowName ? 'flex' : 'hidden'}`}>
             <input className='bg-white py-1 rounded-md border text-neutral-500 px-5  border-neutral-300' type='text' onChange={(e) => setFilterName(e.target.value)} />
           </div>
         </li>
         <li className='mb-2 py-1'>
-          <button className='text-[17px] font-medium text-neutral-700 flex items-center' onClick={() => setShowDni(!isShowDni)}>Dni<span className='text-sm'><IoIosArrowDown /></span></button>
+          <button className='text-[14px] mb-1 font-medium text-neutral-700 flex items-center' onClick={() => setShowDni(!isShowDni)}>Dni<span className={` ${isShowDni ? 'rotate-0' : 'rotate-[270deg]'} text-sm`}><IoIosArrowDown /></span></button>
           <div className={` flex-col ${isShowDni ? 'flex' : 'hidden'}`}>
             <input
               className='bg-white py-1 rounded-md border text-neutral-500 px-5  border-neutral-300' type='text' onChange={(e) => {
@@ -127,7 +127,7 @@ export default function MenuFilter ({ setCustomers, setOptionsFilter }) {
           </div>
         </li>
       </ul>
-      <button className='bg-amber-300 py-1 rounded-md text-white w-full font-semibold' onClick={handleFilterButtton}>Filtrar</button>
+      <button className='bg-green-400 py-1 rounded-md text-white w-full font-semibold' onClick={handleFilterButtton}>Filtrar</button>
     </div>
   )
 }

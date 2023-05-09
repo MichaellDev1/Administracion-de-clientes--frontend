@@ -17,7 +17,7 @@ export default function Header () {
         <div />
         <button className='flex items-center py-1 px-2 rounded-xl transition-[background-color] hover:bg-[#3d4879]' onClick={() => handleMenuUserShow()}>
           <div className='w-10 h-10 rounded-full overflow-hidden mr-2'>
-            <img src={user.image} alt={`user image ${user.name}`} />
+            <img src={user.image} alt={`user image ${user.name}`} className='w-full h-full object-cover' />
           </div>
           <div style={{ lineHeight: 0 }} className='text-left'>
             <h5 className='text-[15px] font-medium' style={{ lineHeight: 1 }}>{user.name} {user.surname}</h5>

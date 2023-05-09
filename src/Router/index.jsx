@@ -4,6 +4,7 @@ import Home from '../page/Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PrivateRouter from '../components/PrivateRouter'
 import PrivateRouterLogin from '../components/PrivateRouterLogin'
+import Register from '../page/Register'
 
 export default function RouterApp () {
   return (
@@ -18,8 +19,15 @@ export default function RouterApp () {
         />
         <Route
           path='/login' element={
-            <PrivateRouterLogin>
+            <PrivateRouterLogin route='/login'>
               <Login />
+            </PrivateRouterLogin>
+          }
+        />
+        <Route
+          path='/register' element={
+            <PrivateRouterLogin route='/register'>
+              <Register />
             </PrivateRouterLogin>
           }
         />
