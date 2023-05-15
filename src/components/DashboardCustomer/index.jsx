@@ -114,7 +114,7 @@ export default function DashboardCustomer () {
     if (menuShow) setShowMenu(false)
   }
 
-  return user.rol.includes('admin') && isAuth && user
+  return user.rol.includes('admin') && user
     ? <div className='w-full sm:px-20 px-5'>
       <div className='w-full flex-col min-h-[90vh] relative flex justify-center'>
         {

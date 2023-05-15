@@ -66,10 +66,12 @@ export default function FormLogin () {
         <span className='pl-3'>Password</span>
         <span className='absolute top-9 left-4 text-lg'><FiLock /></span>
         <input type={isShowPassword ? 'text' : 'password'} name='password' onChange={handleChangeInput} className='bg-white py-2 rounded-3xl border text-neutral-500 pl-10 pr-5  border-neutral-300' />
+
         <span className='absolute flex  justify-center items-center text-xl right-6 top-[45px]'>
           <span className='pointer-events-none absolute'> {isShowPassword ? <MdOutlineVisibilityOff /> : <MdOutlineVisibility />}</span>
           <input type='button' onClick={() => setShowPassword(!isShowPassword)} className='w-7 h-7  absolute cursor-pointer' />
         </span>
+
       </label>
       <div className='my-2 pl-1 font-normal text-sm text-blue-500'>
         <Link to='/register' className=''>Do you already have an account?</Link>

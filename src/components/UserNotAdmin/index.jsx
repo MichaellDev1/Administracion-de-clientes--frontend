@@ -10,8 +10,8 @@ export default function UserNotAdmin () {
           <img src={user.image} alt='userImage' className='w-full h-full object-cover' />
         </div>
         <h1 className='flex flex-col text-2xl font-normal' style={{ lineHeight: 1 }}><span>Hello</span><span className='mt-1'>{user.name} {user.surname}</span></h1>
-        <p className='text-sm mt-5 font-normal'>Por prevención de sobrecarga de la base de dato se estara limitando a los usuarios que tengan un rol de usuario. Mientras que los que contengan un rol de administrador estaran admitidos a administrar clientes, espero que comprenda.</p>
-        <span className='capitalize font-semibold text-sm mt-2'>Su rol: {user.rol}</span>
+        <p className='text-sm mt-5 font-normal'>To prevent database overload, it will be limited to users who have a user role. While those with an admin role will be allowed to manage clients, I hope you understand..</p>
+        <span className='capitalize font-semibold text-sm mt-2'>rol: {user.rol}</span>
       </div>
     </div>
   )
