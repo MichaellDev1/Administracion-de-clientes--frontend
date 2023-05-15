@@ -14,7 +14,7 @@ export default function MenuFilter ({ setCustomers, setOptionsFilter }) {
 
   const handleFilterButtton = (e) => {
     if (filterName && !filterDni) {
-      fetch(`https://localhost:4000/customer/name/${filterName}`, {
+      fetch(`https://administracion-de-clientes-backend.vercel.app/customer/name/${filterName}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ export default function MenuFilter ({ setCustomers, setOptionsFilter }) {
     }
 
     if (filterDni && !filterName) {
-      fetch(`https://localhost:4000/customer/dni/${filterDni}`, {
+      fetch(`https://administracion-de-clientes-backend.vercel.app/customer/dni/${filterDni}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export default function MenuFilter ({ setCustomers, setOptionsFilter }) {
     }
 
     if (filterDni && filterName) {
-      fetch(`https://localhost:4000/customer/${filterName}/${filterDni}`, {
+      fetch(`https://administracion-de-clientes-backend.vercel.app/customer/${filterName}/${filterDni}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export default function MenuFilter ({ setCustomers, setOptionsFilter }) {
 
     if (moreAncient || moreRecent) {
       if (!filterDni && !filterName) {
-        fetch('https://localhost:4000/customer/filter', {
+        fetch('https://administracion-de-clientes-backend.vercel.app/customer/filter', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

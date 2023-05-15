@@ -47,7 +47,7 @@ export default function PortalModal ({ setModalDelete }) {
     const token = window.localStorage.getItem('SESSION_ID')
 
     if (!data.email && !data.password) return
-    fetch('http://localhost:4000/auth', {
+    fetch('https://administracion-de-clientes-backend.vercel.app/auth', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

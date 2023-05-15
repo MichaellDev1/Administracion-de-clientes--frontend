@@ -23,7 +23,7 @@ export default function ModalUpdateCustomer ({ nullSelected, customerSelected })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await fetch(`http://localhost:4000/customer/update/${data._id}`, {
+    await fetch(`https://server-api-michaelldev1.vercel.app/customer/update/${data._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

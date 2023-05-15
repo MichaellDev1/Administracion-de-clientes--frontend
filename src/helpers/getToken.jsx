@@ -13,7 +13,7 @@ export function checkToken () {
     if (getToken()) {
       setSession(true)
       const userData = async () => {
-        const fetchingUser = await fetch('http://localhost:4000/auth/', {
+        const fetchingUser = await fetch('https://administracion-de-clientes-backend.vercel.app/auth/', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

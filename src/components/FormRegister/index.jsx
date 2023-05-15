@@ -12,12 +12,14 @@ const initialState = {
 export default function FormRegister () {
   const [dataUser, setDataUser] = useState(initialState)
   const [isError, setError] = useState(false)
+  const [isLoading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   const handleLogin = (e) => {
     e.preventDefault()
-
-    fetch('http://localhost:4000/auth/register', {
+    if (isLoading) return
+    setLoading(true)
+    fetch('https://server-api-michaelldev1.vercel.app/auth/register', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -25,9 +27,13 @@ export default function FormRegister () {
       body: JSON.stringify(dataUser)
     }).then(response => response.json())
       .then(data => {
+        setLoading(false)
         return navigate('/login')
       })
-      .catch(e => setError(true))
+      .catch(e => {
+        setError(true)
+        setLoading(false)
+      })
   }
 
   const handleChangeInput = (e) => {
@@ -44,13 +50,13 @@ export default function FormRegister () {
         <h2 className='text-3xl font-normal text-blue-700'>Welcome!</h2>
         <p className='text-xl font-light text-blue-300'>Sign in to your Account</p>
       </div>
-      <div className='flex items-center'>
-        <label htmlFor='' className='flex relative text-base flex-col text-neutral-400 font-normal mt-5 mr-3'>
+      <div className='flex items-center sm:flex-row flex-col'>
+        <label htmlFor='' className='flex relative text-base flex-col text-neutral-400 font-normal mt-5 mr-3 sm:w-[50%] w-full'>
           <span className='pl-3'>Name</span>
           <span className='absolute top-9 left-4 text-lg'><FiUser /></span>
           <input type='text' name='name' onChange={handleChangeInput} className='bg-white py-2 flex-1 rounded-3xl border text-neutral-500 pl-10 pr-5 border-neutral-300' />
         </label>
-        <label htmlFor='' className='flex relative text-base flex-col text-neutral-400 font-normal mt-5'>
+        <label htmlFor='' className='flex relative text-base flex-col text-neutral-400 font-normal mt-5 sm:w-[50%] w-full'>
           <span className='pl-3'>Surname</span>
           <span className='absolute top-9 left-4 text-lg'><FiLock /></span>
           <input type='text' name='surname' onChange={handleChangeInput} className='bg-white py-2 flex-1 rounded-3xl border text-neutral-500 pl-10 pr-5  border-neutral-300' />
@@ -71,10 +77,10 @@ export default function FormRegister () {
       </div>
       <div className='flex flex-col'>
         {
-        isError ? <span className='text-red-500 font-normal text-sm pr-1'>An error occurred!!!</span> : null
+        isError && <span className='text-red-500 font-normal text-sm pr-1'>Email already in use!!!</span>
       }
       </div>
-      <button className='bg-blue-600 hover:bg-blue-500 transition-[background-color] font-semibold uppercase text-white w-full py-2 rounded-3xl text-base'>Register</button>
+      <button className='bg-blue-600 hover:bg-blue-500 transition-[background-color] font-semibold uppercase text-white w-full py-2 rounded-3xl text-base'>{isLoading ? 'Loading...' : 'Register'}</button>
     </form>
   )
 }

@@ -25,7 +25,7 @@ export default function DashboardCustomer () {
   useEffect(() => {
     if (user) {
       if (user.rol.includes('admin')) {
-        fetch('http://localhost:4000/customer', {
+        fetch('https://server-api-michaelldev1.vercel.app/customer', {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${user.token}`
@@ -55,7 +55,7 @@ export default function DashboardCustomer () {
       addCutomer.state === '') return console.log('Falta de credentiales')
 
     if (addCutomer.name.trim() !== '' && addCutomer.surname.trim() !== '' && addCutomer.state !== '' && addCutomer.dni.trim() !== '') {
-      fetch('http://localhost:4000/customer/add', {
+      fetch('https://server-api-michaelldev1.vercel.app/customer/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ export default function DashboardCustomer () {
   }
 
   const handleDeleteCustomer = ({ id }) => {
-    fetch(`http://localhost:4000/customer/delete/${id}`, {
+    fetch(`https://server-api-michaelldev1.vercel.app/customer/delete/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
